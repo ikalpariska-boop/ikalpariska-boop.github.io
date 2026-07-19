@@ -1,0 +1,15 @@
+{
+  "id": "withered-branch",
+  "title": "Withered Branch",
+  "category": "Poster & Cover",
+  "year": 2025,
+  "medium": "Digital illustration, value study",
+  "client": "[Add client, publication, or \"Personal project\"]",
+  "tint": "6",
+  "heroImage": "assets/images/withered-branch/hero.jpg",
+  "heroAlt": "A bound child with bare branches growing from their head like antlers, standing in a dark corridor above two silhouetted onlookers, monochrome value study",
+  "story": "[Paragraph 1 — what this piece is about and what sparked it.]\n\n[Paragraph 2 — a decision you made while making it, and why.]\n\n[Paragraph 3 — where it was published, shown, or what happened to it — note if this is still in progress.]",
+  "process": [
+    { "image": "assets/images/withered-branch/process-01.jpg", "alt": "Notan value study, same image as the cover — this is the only piece from this project so far", "caption": "Value study" }
+  ]
+}

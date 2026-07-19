@@ -1,0 +1,446 @@
+/* ==========================================================================
+   Haikal Aqila — Portfolio
+   Design tokens: paper/ink palette + navy accent, Fraunces (display) /
+   Work Sans (body+utility). See README.md for the content model this
+   styling drives — this file should rarely need to change.
+   ========================================================================== */
+
+:root {
+  /* Color */
+  --paper:      #F7F6F2;   /* page background — the sketchbook page */
+  --surface:    #EFEDE5;   /* raised panels, placeholder base */
+  --ink:        #1A1916;   /* primary text */
+  --ink-soft:   #6D6B63;   /* secondary text, meta, labels — 4.94:1 on paper */
+  --accent:     #25344A;   /* navy — links, active states, emphasis */
+  --border:     #E2DFD4;   /* hairline dividers */
+
+  /* Placeholder wash tints — watercolour-swatch family, not random pastels */
+  --tint-1: #E4D9CE;
+  --tint-2: #CFDBDE;
+  --tint-3: #D6DDCB;
+  --tint-4: #D6D3E1;
+  --tint-5: #E7D9C3;
+  --tint-6: #D2CFDD;
+
+  /* Type */
+  --font-display: 'Fraunces', ui-serif, Georgia, serif;
+  --font-body: 'Work Sans', ui-sans-serif, system-ui, sans-serif;
+
+  /* Spacing scale (marketing/gallery density — let the work breathe) */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 48px;
+  --space-6: 64px;
+  --space-7: 88px;
+  --space-8: 96px;
+
+  /* Motion */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1); /* expo-out — entrances/reveals only */
+  --dur-fast: 0.2s;
+  --dur-base: 0.3s;
+  --dur-slow: 0.5s;
+}
+
+/* ==========================================================================
+   Reset & base
+   ========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+html, body { overflow-x: hidden; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+button { font: inherit; color: inherit; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+
+[x-cloak] { display: none !important; }
+
+/* Visible, non-removed focus ring everywhere */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 16px;
+  border-radius: 3px;
+  z-index: 1000;
+  transform: translateY(-64px);
+  transition: transform var(--dur-fast) var(--ease);
+}
+.skip-link:focus-visible { transform: translateY(0); }
+
+/* ==========================================================================
+   Signature texture — faint paper grain
+   A tactile nod to the ink/watercolour paper Haikal actually draws on,
+   not decoration for its own sake. Static (no animation), negligible cost:
+   one inlined SVG turbulence filter, no network request.
+   ========================================================================== */
+
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+/* ==========================================================================
+   Layout primitives
+   ========================================================================== */
+
+.container { max-width: 1280px; margin: 0 auto; padding: 0 var(--space-6); }
+@media (max-width: 767px) { .container { padding: 0 var(--space-3); } }
+
+.hero-intro { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--space-4); }
+.hero-intro > * { min-width: 0; }
+@media (max-width: 767px) { .hero-intro { flex-direction: column; align-items: flex-start; } }
+
+.detail-title-row { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: var(--space-3); }
+.detail-title-row > * { min-width: 0; }
+
+.about-grid { display: grid; grid-template-columns: 360px 1fr; gap: var(--space-8); align-items: start; }
+@media (max-width: 1023px) { .about-grid { grid-template-columns: 1fr 1.4fr; gap: var(--space-6); } }
+@media (max-width: 767px)  { .about-grid { grid-template-columns: 1fr; gap: var(--space-5); } }
+
+.prevnext-row { display: flex; justify-content: space-between; align-items: flex-start; gap: var(--space-4); flex-wrap: wrap; }
+
+.prevnext-link { text-decoration: none; display: block; transition: opacity var(--dur-fast) var(--ease); }
+.prevnext-link:hover, .prevnext-link:focus-visible { opacity: 0.6; }
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+}
+
+/* Section marks ("The Story", "The Process") — set in the display face,
+   mixed case, deliberately distinct from the utility .eyebrow label so
+   they read as one authored device, not repeated section scaffolding. */
+.section-mark {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--ink-soft);
+  letter-spacing: 0.01em;
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.hero-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(40px, 8vw, 60px);
+  line-height: 0.93;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.page-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(36px, 6vw, 56px);
+  line-height: 1;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.detail-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(28px, 4.5vw, 40px);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  max-width: 580px;
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.2;
+  overflow-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.nav-link {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 0 2px;
+  border-bottom: 1px solid transparent;
+  transition: color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+}
+.nav-link:hover, .nav-link:focus-visible { color: var(--accent); border-bottom-color: var(--accent); }
+.nav-link.is-active { color: var(--accent); border-bottom-color: var(--accent); }
+
+.text-link {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease);
+}
+.text-link:hover, .text-link:focus-visible { color: var(--accent); }
+
+.ink-link {
+  font-family: var(--font-display);
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 2px;
+  display: inline-block;
+  transition: opacity var(--dur-fast) var(--ease);
+}
+.ink-link:hover, .ink-link:focus-visible { opacity: 0.62; }
+
+.story-wrap { max-width: 680px; }
+.story-wrap p {
+  font-size: 18px;
+  line-height: 1.78;
+  color: var(--ink);
+  margin-bottom: var(--space-4);
+  text-wrap: pretty;
+}
+
+/* ==========================================================================
+   Navigation
+   ========================================================================== */
+
+.site-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background-color: var(--paper);
+  border-bottom: 1px solid transparent;
+  transition: background-color var(--dur-base) var(--ease), border-color var(--dur-base) var(--ease);
+}
+.site-nav.is-transparent { background-color: transparent; }
+.site-nav.is-scrolled { border-bottom-color: var(--border); }
+
+.site-nav .container {
+  display: flex; align-items: center; justify-content: space-between; height: 64px;
+  padding-left: calc(var(--space-6) + env(safe-area-inset-left));
+  padding-right: calc(var(--space-6) + env(safe-area-inset-right));
+}
+@media (max-width: 767px) {
+  .site-nav .container {
+    padding-left: calc(var(--space-3) + env(safe-area-inset-left));
+    padding-right: calc(var(--space-3) + env(safe-area-inset-right));
+  }
+}
+
+.nav-links { display: flex; gap: var(--space-5); align-items: center; }
+.nav-ham { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; }
+.nav-ham span { display: block; width: 22px; height: 1.5px; background: var(--ink); transition: transform var(--dur-fast) var(--ease), opacity var(--dur-fast) var(--ease); }
+@media (max-width: 767px) {
+  .nav-links { display: none; }
+  .nav-ham { display: flex; }
+}
+
+.mobile-menu {
+  position: fixed;
+  top: 64px; left: 0; right: 0;
+  z-index: 99;
+  background: var(--paper);
+  border-bottom: 1px solid var(--border);
+  padding: var(--space-4) calc(var(--space-3) + env(safe-area-inset-right)) var(--space-5) calc(var(--space-3) + env(safe-area-inset-left));
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.mobile-menu .nav-link { font-size: 14px; text-align: left; }
+
+/* ==========================================================================
+   Artwork slots — CSS placeholder with automatic <img> fallback
+   Drop a correctly-named file in assets/images/ and it covers the
+   placeholder automatically. No code changes, no broken-image icons.
+   ========================================================================== */
+
+.art-slot {
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px;
+  background-color: var(--surface);
+  background-image: repeating-linear-gradient(45deg, rgba(26,25,22,0.05) 0, rgba(26,25,22,0.05) 1px, transparent 0, transparent 8px);
+}
+.art-slot[data-tint="1"] { background-color: var(--tint-1); }
+.art-slot[data-tint="2"] { background-color: var(--tint-2); }
+.art-slot[data-tint="3"] { background-color: var(--tint-3); }
+.art-slot[data-tint="4"] { background-color: var(--tint-4); }
+.art-slot[data-tint="5"] { background-color: var(--tint-5); }
+.art-slot[data-tint="6"] { background-color: var(--tint-6); }
+
+.art-slot.is-process[data-tint="1"] { background-color: color-mix(in srgb, var(--tint-1) 40%, var(--surface)); }
+.art-slot.is-process[data-tint="2"] { background-color: color-mix(in srgb, var(--tint-2) 40%, var(--surface)); }
+.art-slot.is-process[data-tint="3"] { background-color: color-mix(in srgb, var(--tint-3) 40%, var(--surface)); }
+.art-slot.is-process[data-tint="4"] { background-color: color-mix(in srgb, var(--tint-4) 40%, var(--surface)); }
+.art-slot.is-process[data-tint="5"] { background-color: color-mix(in srgb, var(--tint-5) 40%, var(--surface)); }
+.art-slot.is-process[data-tint="6"] { background-color: color-mix(in srgb, var(--tint-6) 40%, var(--surface)); }
+
+.art-slot::after {
+  content: attr(data-label);
+  position: absolute;
+  left: 14px;
+  bottom: 12px;
+  font-family: var(--font-body);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(26,25,22,0.32);
+  opacity: 0;
+  transition: opacity var(--dur-fast) var(--ease);
+}
+.art-slot:has(.art-img--missing)::after { opacity: 1; }
+
+.art-img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 1;
+  transition: opacity var(--dur-slow) var(--ease);
+}
+.art-img--missing { opacity: 0; }
+
+/* Aspect ratios for masonry variety */
+.ar-tall     { aspect-ratio: 2 / 3; }
+.ar-wide     { aspect-ratio: 3 / 2; }
+.ar-sq       { aspect-ratio: 1 / 1; }
+.ar-portrait { aspect-ratio: 3 / 4; }
+
+/* ==========================================================================
+   Gallery — masonry grid + hover crossfade (art → process)
+   The signature interaction: hovering a finished piece reveals the
+   sketch/process behind it, embodying "not just a gallery of finals."
+   ========================================================================== */
+
+.gallery-cols { columns: 3 280px; column-gap: var(--space-3); }
+@media (max-width: 767px)  { .gallery-cols { columns: 1; } }
+@media (min-width: 768px) and (max-width: 1023px) { .gallery-cols { columns: 2; } }
+
+.gallery-card { break-inside: avoid; margin-bottom: var(--space-3); cursor: pointer; text-decoration: none; color: inherit; display: block; }
+
+.gallery-card .art-cover, .gallery-card .art-process { position: absolute; inset: 0; }
+.gallery-card .art-process { opacity: 0; }
+.gallery-card .art-process .art-img { filter: saturate(0.18) brightness(1.12) contrast(1.04); }
+.gallery-card:hover .art-cover, .gallery-card:focus-visible .art-cover { opacity: 0; }
+.gallery-card:hover .art-process, .gallery-card:focus-visible .art-process { opacity: 1; }
+.gallery-card .art-cover, .gallery-card .art-process { transition: opacity var(--dur-slow) var(--ease-out); }
+
+.gallery-card-meta { display: flex; justify-content: space-between; align-items: flex-start; padding-top: 13px; gap: var(--space-1); }
+
+/* ==========================================================================
+   Process filmstrip — horizontal, scroll-snapped, numbered
+   Numbering here encodes something real: the literal chronological
+   order the piece was made in.
+   ========================================================================== */
+
+.filmstrip {
+  display: flex;
+  gap: var(--space-2);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: var(--space-2);
+}
+.filmstrip::-webkit-scrollbar { height: 2px; }
+.filmstrip::-webkit-scrollbar-track { background: var(--border); }
+.filmstrip::-webkit-scrollbar-thumb { background: var(--accent); }
+.filmstrip-item { flex: none; width: min(296px, 76vw); scroll-snap-align: start; }
+.filmstrip-pad { padding-left: var(--space-6); padding-right: var(--space-3); }
+@media (max-width: 767px) { .filmstrip-pad { padding-left: var(--space-3); } }
+
+.filmstrip-caption { display: flex; gap: 8px; margin-top: 11px; }
+.filmstrip-index { font-family: var(--font-body); font-size: 12px; color: var(--ink-soft); font-variant-numeric: tabular-nums; flex-shrink: 0; }
+.filmstrip-text { font-size: 12px; color: var(--ink-soft); line-height: 1.45; }
+
+/* ==========================================================================
+   Scroll reveal — restrained entrance, once per element
+   ========================================================================== */
+
+/* Visible by default — JS only plays a one-time entrance animation on top
+   of an already-shown element. If the Alpine CDN fails to load, is blocked,
+   or the tab is backgrounded during load (transitions pause on hidden tabs),
+   the gallery still shows the art instead of shipping blank. */
+.reveal { opacity: 1; }
+.reveal.is-visible { animation: reveal-in var(--dur-slow) var(--ease-out) both; }
+
+@keyframes reveal-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal.is-visible { animation: none; }
+  .gallery-card .art-cover, .gallery-card .art-process,
+  .art-img, .site-nav, .nav-link, .text-link, .ink-link, .skip-link, .nav-ham span,
+  .mobile-menu, .prevnext-link, .social-icon {
+    transition: none !important;
+  }
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.site-footer { border-top: 1px solid var(--border); }
+.site-footer .container { padding-top: var(--space-3); padding-bottom: var(--space-3); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-2); }
+.footer-copy { font-size: 12px; color: var(--ink-soft); }
+.social-row { display: flex; align-items: center; gap: var(--space-3); }
+.social-icon { color: var(--ink-soft); display: flex; align-items: center; transition: color var(--dur-fast) var(--ease); }
+.social-icon:hover, .social-icon:focus-visible { color: var(--accent); }

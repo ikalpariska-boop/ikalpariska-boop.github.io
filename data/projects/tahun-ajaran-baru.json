@@ -1,0 +1,15 @@
+{
+  "id": "tahun-ajaran-baru",
+  "title": "Tahun Ajaran Baru",
+  "category": "Poster & Cover",
+  "year": 2025,
+  "medium": "Digital illustration, poster",
+  "client": "[Add client, publication, or \"Personal project\"] — Universitas Dian Nuswantoro (Udinus)",
+  "tint": "5",
+  "heroImage": "assets/images/tahun-ajaran-baru/hero.jpg",
+  "heroAlt": "A student surrounded by art and study supplies bursting from an open book, with the Udinus campus tower behind her",
+  "story": "[Paragraph 1 — what this piece is about and what sparked it.]\n\n[Paragraph 2 — a decision you made while making it, and why.]\n\n[Paragraph 3 — where it was published, shown, or what happened to it.]",
+  "process": [
+    { "image": "assets/images/tahun-ajaran-baru/process-01.jpg", "alt": "Sketch for the Tahun Ajaran Baru poster", "caption": "Sketch" }
+  ]
+}

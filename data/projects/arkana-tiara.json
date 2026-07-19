@@ -1,0 +1,19 @@
+{
+  "id": "arkana-tiara",
+  "title": "Arkana Tiara",
+  "category": "Comic",
+  "year": 2025,
+  "medium": "Digital illustration, comic",
+  "client": "[Add client, publication, or \"Personal project\"]",
+  "tint": "2",
+  "heroImage": "assets/images/arkana-tiara/hero.jpg",
+  "heroAlt": "A glowing figure standing above a nighttime city skyline, cover art for the comic Arkana Tiara",
+  "story": "[Paragraph 1 — what Arkana Tiara is about and what sparked the story.]\n\n[Paragraph 2 — a decision you made while making it, and why.]\n\n[Paragraph 3 — where it was published, shown, or what happened to it.]",
+  "process": [
+    { "image": "assets/images/arkana-tiara/process-01.jpg", "alt": "Two character designs for Arkana Tiara — a cloaked figure and a girl in a white dress", "caption": "Character design" },
+    { "image": "assets/images/arkana-tiara/process-02.jpg", "alt": "Page 1 of Arkana Tiara", "caption": "Page 1 of 10" },
+    { "image": "assets/images/arkana-tiara/process-03.jpg", "alt": "Page 3 of Arkana Tiara", "caption": "Page 3 of 10" },
+    { "image": "assets/images/arkana-tiara/process-04.jpg", "alt": "Page 6 of Arkana Tiara", "caption": "Page 6 of 10" },
+    { "image": "assets/images/arkana-tiara/process-05.jpg", "alt": "Page 10 of Arkana Tiara", "caption": "Page 10 of 10" }
+  ]
+}

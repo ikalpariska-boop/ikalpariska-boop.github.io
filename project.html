@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project — Haikal Aqila</title>
+<meta name="description" content="Illustration project detail — the finished piece and the process behind it.">
+<meta name="theme-color" content="#F7F6F2">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%23F7F6F2'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='19' text-anchor='middle' fill='%2325344A'%3EH%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body x-data="site">
+
+<a href="#main" class="skip-link">Skip to project</a>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ═══════════════ NAV ═══════════════ -->
+<div @click.outside="closeMenu">
+  <nav class="site-nav" :class="{ 'is-scrolled': scrolled }">
+    <div class="container">
+      <a href="index.html" class="wordmark" x-text="name || 'Haikal Aqila'"></a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link is-active">Work</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="about.html#contact" class="nav-link">Contact</a>
+      </div>
+      <button type="button" class="nav-ham" @click="toggleMenu" :aria-expanded="menuOpen" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" x-show="menuOpen" x-cloak x-transition.opacity>
+    <a href="index.html" class="nav-link is-active" @click="closeMenu">Work</a>
+    <a href="about.html" class="nav-link" @click="closeMenu">About</a>
+    <a href="about.html#contact" class="nav-link" @click="closeMenu">Contact</a>
+  </div>
+</div>
+
+<main id="main" x-data="project" style="padding-top: 64px">
+
+  <p class="eyebrow container" style="padding-top: 96px" x-show="loading" x-cloak aria-live="polite">Loading project…</p>
+
+  <div class="container" style="padding-top: 96px; padding-bottom: 96px" x-show="notFound" x-cloak aria-live="polite">
+    <p class="page-title" style="font-size: 28px; margin-bottom: 16px">Couldn&rsquo;t find that project</p>
+    <p class="eyebrow">The link may be out of date.</p>
+    <a href="index.html" class="ink-link" style="margin-top: 24px; font-size: 15px">← Back to Work</a>
+  </div>
+
+  <template x-if="current">
+    <div>
+      <!-- Back link -->
+      <div class="container" style="padding-top: 36px">
+        <a href="index.html" class="text-link" style="text-transform: uppercase; letter-spacing: 0.11em; font-weight: 500">← Work</a>
+      </div>
+
+      <!-- Hero artwork image -->
+      <div class="container" style="padding-top: 32px">
+        <div class="art-slot" :data-tint="current.tint" data-label="artwork" style="aspect-ratio: 3/2">
+          <img class="art-img" :src="current.heroImage" :alt="current.heroAlt" fetchpriority="high" @error="$el.classList.add('art-img--missing')">
+        </div>
+      </div>
+
+      <!-- Title + meta row -->
+      <div class="container" style="padding-top: 44px; padding-bottom: 44px; border-bottom: 1px solid var(--border)">
+        <div class="detail-title-row">
+          <h1 class="detail-title" x-text="current.title"></h1>
+          <div style="text-align: right; flex-shrink: 0; padding-bottom: 4px">
+            <p class="eyebrow" style="margin-bottom: 6px" x-text="`${current.category} · ${current.year}`"></p>
+            <p class="eyebrow" x-text="current.medium"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- The Story -->
+      <div class="container" style="padding-top: 64px; padding-bottom: 64px">
+        <p class="section-mark" style="margin-bottom: 36px">The Story</p>
+        <div class="story-wrap">
+          <template x-for="(para, i) in storyParagraphs" :key="i">
+            <p x-text="para"></p>
+          </template>
+        </div>
+      </div>
+
+      <!-- The Process — horizontal filmstrip, numbered (real chronological order) -->
+      <div style="border-top: 1px solid var(--border)">
+        <div class="container" style="padding-top: 64px; padding-bottom: 28px">
+          <p class="section-mark">The Process</p>
+        </div>
+        <div class="filmstrip filmstrip-pad" style="padding-bottom: 64px">
+          <template x-for="(step, i) in current.process" :key="i">
+            <div class="filmstrip-item reveal">
+              <div class="art-slot is-process" :data-tint="current.tint" data-label="process" style="aspect-ratio: 4/3">
+                <img class="art-img" :src="step.image" :alt="step.alt" loading="lazy" style="filter: saturate(0.25) brightness(1.1) contrast(1.04)" @error="$el.classList.add('art-img--missing')">
+              </div>
+              <div class="filmstrip-caption">
+                <span class="filmstrip-index" x-text="String(i + 1).padStart(2, '0')"></span>
+                <p class="filmstrip-text" x-text="step.caption"></p>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+
+      <!-- Prev / Next project navigation -->
+      <div style="border-top: 1px solid var(--border)">
+        <div class="container" style="padding-top: 48px; padding-bottom: 72px">
+          <div class="prevnext-row">
+            <a :href="`project.html?id=${prev.id}`" class="prevnext-link">
+              <p class="eyebrow" style="margin-bottom: 12px">← Previous</p>
+              <p class="card-title" style="font-size: 22px" x-text="prev.title"></p>
+            </a>
+            <a :href="`project.html?id=${next.id}`" class="prevnext-link" style="text-align:right">
+              <p class="eyebrow" style="margin-bottom: 12px">Next →</p>
+              <p class="card-title" style="font-size: 22px" x-text="next.title"></p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+</main>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer class="site-footer">
+  <div class="container">
+    <p class="footer-copy">© <span x-text="new Date().getFullYear()"></span> <span x-text="name || 'Haikal Aqila'"></span></p>
+    <div class="social-row">
+      <a :href="instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+      </a>
+      <a :href="behance" target="_blank" rel="noopener noreferrer" aria-label="Behance" class="social-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M22 7h-7V5h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14H15.97c.13 3.211 3.483 3.312 4.588 2.029H23.72zm-7.726-3h3.608c-.088-1.74-1.236-2.484-1.892-2.484-.765 0-1.56.527-1.716 2.484zM8 11.979c1.888 0 2.879-.954 2.879-2.248 0-1.283-.991-1.964-2.879-1.964H3.78v4.212H8zm.279 5.021c2.104 0 3.201-1.028 3.201-2.56 0-1.432-1.098-2.44-3.201-2.44H3.78V17H8.28z"></path></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script defer src="js/site.js"></script>
+<script defer src="js/project.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.9/dist/cdn.min.js"></script>
+</body>
+</html>

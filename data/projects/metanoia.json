@@ -1,0 +1,19 @@
+{
+  "id": "metanoia",
+  "title": "Metanoia",
+  "category": "Character Design",
+  "year": 2025,
+  "medium": "Digital illustration, character design",
+  "client": "[Add client, publication, or \"Personal project\"]",
+  "tint": "1",
+  "heroImage": "assets/images/metanoia/hero.jpg",
+  "heroAlt": "Judgement, an antlered, three-eyed beast crouched low with bared teeth",
+  "story": "[Paragraph 1 — what Metanoia is about and what sparked this character series.]\n\n[Paragraph 2 — a decision you made while designing this cast, and why.]\n\n[Paragraph 3 — where this series is headed, or what it was made for.]",
+  "process": [
+    { "image": "assets/images/metanoia/process-01.jpg", "alt": "Faceless Queen, a cloaked figure with a crowned, obscured face and clawed hands", "caption": "Character design — Faceless Queen" },
+    { "image": "assets/images/metanoia/process-02.jpg", "alt": "Jouska, a round owl-like creature shown in dark and light color variants", "caption": "Character design — Jouska" },
+    { "image": "assets/images/metanoia/process-03.jpg", "alt": "Anya, a character turnaround in pajamas shown from front, side, and back", "caption": "Character turnaround — Anya" },
+    { "image": "assets/images/metanoia/process-04.jpg", "alt": "Dr Kael, a character turnaround in a long coat shown from front, side, and back", "caption": "Character turnaround — Dr Kael" },
+    { "image": "assets/images/metanoia/process-05.jpg", "alt": "A concept scene from the Metanoia world", "caption": "Concept scene" }
+  ]
+}

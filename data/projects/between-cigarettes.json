@@ -1,0 +1,15 @@
+{
+  "id": "between-cigarettes",
+  "title": "Between Cigarettes",
+  "category": "Landscape",
+  "year": 2025,
+  "medium": "Digital illustration",
+  "client": "[Add client, publication, or \"Personal project\"]",
+  "tint": "3",
+  "heroImage": "assets/images/between-cigarettes/hero.jpg",
+  "heroAlt": "Three silhouetted figures with glowing lungs overlaid on a heartbeat monitor line",
+  "story": "[Paragraph 1 — what this piece is about and what sparked it.]\n\n[Paragraph 2 — a decision you made while making it, and why.]\n\n[Paragraph 3 — where it was published, shown, or what happened to it.]",
+  "process": [
+    { "image": "assets/images/between-cigarettes/process-01.jpg", "alt": "Monochrome version of the same three figures with glowing lungs over a heartbeat line", "caption": "Monochrome study" }
+  ]
+}

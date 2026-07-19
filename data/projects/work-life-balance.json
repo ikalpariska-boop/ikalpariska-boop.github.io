@@ -1,0 +1,15 @@
+{
+  "id": "work-life-balance",
+  "title": "Work Life Balance",
+  "category": "Landscape",
+  "year": 2025,
+  "medium": "Digital illustration",
+  "client": "[Add client, publication, or \"Personal project\"]",
+  "tint": "1",
+  "heroImage": "assets/images/work-life-balance/hero.jpg",
+  "heroAlt": "A January calendar page illustrated with a figure's mood shifting day by day under a diagonal band of light",
+  "story": "[Paragraph 1 — what this piece is about and what sparked it.]\n\n[Paragraph 2 — a decision you made while making it, and why.]\n\n[Paragraph 3 — where it was published, shown, or what happened to it.]",
+  "process": [
+    { "image": "assets/images/work-life-balance/process-01.jpg", "alt": "A May calendar page continuing the same illustrated figure and diagonal band of light", "caption": "Companion piece — May" }
+  ]
+}

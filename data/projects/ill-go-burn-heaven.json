@@ -1,0 +1,16 @@
+{
+  "id": "ill-go-burn-heaven",
+  "title": "I'll Go Burn Heaven",
+  "category": "Poster & Cover",
+  "year": 2025,
+  "medium": "Digital illustration, book cover",
+  "client": "[Add client, publication, or \"Personal project\"] — a story about Rabi'ah Al-Adawiyah",
+  "tint": "4",
+  "heroImage": "assets/images/ill-go-burn-heaven/hero.jpg",
+  "heroAlt": "A cloaked figure carrying a torch and a bucket of water, walking toward a burning city and a shining city, cover art for I'll Go Burn Heaven, a story about Rabi'ah Al-Adawiyah",
+  "story": "[Paragraph 1 — what this piece is about and what sparked it.]\n\n[Paragraph 2 — a decision you made while making it, and why.]\n\n[Paragraph 3 — where it was published, shown, or what happened to it.]",
+  "process": [
+    { "image": "assets/images/ill-go-burn-heaven/process-01.jpg", "alt": "Color blocking pass for the cover", "caption": "Color blocking" },
+    { "image": "assets/images/ill-go-burn-heaven/process-02.jpg", "alt": "Notan value study for the cover", "caption": "Notan study" }
+  ]
+}

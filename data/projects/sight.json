@@ -1,0 +1,15 @@
+{
+  "id": "sight",
+  "title": "Sight",
+  "category": "Landscape",
+  "year": 2025,
+  "medium": "Digital illustration",
+  "client": "[Add client, publication, or \"Personal project\"]",
+  "tint": "6",
+  "heroImage": "assets/images/sight/hero.jpg",
+  "heroAlt": "A girl standing before a pair of oversized glowing pink eyes and glasses looming behind her",
+  "story": "[Paragraph 1 — what this piece is about and what sparked it.]\n\n[Paragraph 2 — a decision you made while making it, and why.]\n\n[Paragraph 3 — where it was published, shown, or what happened to it.]",
+  "process": [
+    { "image": "assets/images/sight/process-01.jpg", "alt": "Sketch for Sight", "caption": "Sketch" }
+  ]
+}
