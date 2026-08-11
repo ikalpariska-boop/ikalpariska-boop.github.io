@@ -7,7 +7,7 @@
     "coverImage": "assets/images/metanoia/cover.jpg",
     "coverAlt": "Judgement, an antlered, three-eyed beast crouched low with bared teeth",
     "processImage": "assets/images/metanoia/process-01.jpg",
-    "arClass": "ar-wide",
+    "arClass": "ar-tall",
     "tint": "5",
     "featured": true
   },
