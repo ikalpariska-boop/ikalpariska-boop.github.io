@@ -94,7 +94,7 @@
         <div class="filmstrip filmstrip-pad" style="padding-bottom: 64px">
           <template x-for="(step, i) in current.process" :key="i">
             <div class="filmstrip-item reveal">
-              <div class="art-slot is-process" :data-tint="current.tint" data-label="process" style="aspect-ratio: 4/3">
+              <div class="art-slot is-process" :data-tint="current.tint" data-label="process" style="aspect-ratio: 16/9">
                 <img class="art-img" :src="step.image" :alt="step.alt" loading="lazy" style="filter: saturate(0.25) brightness(1.1) contrast(1.04)" @error="$el.classList.add('art-img--missing')">
               </div>
               <div class="filmstrip-caption">
