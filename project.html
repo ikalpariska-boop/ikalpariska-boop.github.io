@@ -59,21 +59,11 @@
       </div>
 
       <!-- Hero artwork image -->
-<div class="container" style="padding-top: 32px">
-  <div
-    class="art-slot"
-    :data-tint="current.tint"
-    data-label="artwork"
-  >
-    <img
-      class="art-img"
-      :src="current.heroImage"
-      :alt="current.heroAlt"
-      fetchpriority="high"
-      @error="$el.classList.add('art-img--missing')"
-    >
-  </div>
-</div>
+  <div class="container" style="padding-top: 32px">
+        <div class="art-slot" :data-tint="current.tint" data-label="artwork" style="aspect-ratio: 3/2">
+          <img class="art-img" :src="current.heroImage" :alt="current.heroAlt" fetchpriority="high" @error="$el.classList.add('art-img--missing')">
+        </div>
+      </div>
 
       <!-- Title + meta row -->
       <div class="container" style="padding-top: 44px; padding-bottom: 44px; border-bottom: 1px solid var(--border)">
