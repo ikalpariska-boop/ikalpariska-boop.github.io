@@ -2,7 +2,7 @@
 // shared by every page. Loaded before the Alpine CDN script on each page.
 document.addEventListener('alpine:init', () => {
   Alpine.data('site', () => ({
-    name: 'Haikal Aqila',
+    name: 'Ikal Kila',
     tagline: '',
     bio: '',
     bioParagraphs: [],
